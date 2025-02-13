@@ -1,7 +1,7 @@
 package Gestao_Pacientes.Entities;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -13,20 +13,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "tb_pacients")
+@Table(name = "tb_patients")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Pacient {
+public class Patient {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,12 +33,25 @@ public class Pacient {
     private String name;
 
     @Column(unique = true)
-    private String CPF;
+    private String cpf;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate dateBirth;
 
     @Enumerated(EnumType.STRING)
-    private PacientStatus status;
-    private Date timesTamp;
+    private PatientStatus status;
+    
+    private LocalDateTime timeStamp = LocalDateTime.now();
+
+    public Patient(Long id, String name, String cpf, LocalDate dateBirth, PatientStatus status) {
+        this.id = id;
+        this.name = name;
+        this.cpf = cpf;
+        this.dateBirth = dateBirth;
+        this.status = status;
+    }
+
+   
+
+    
 }

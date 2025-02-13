@@ -14,51 +14,51 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import Gestao_Pacientes.Entities.Pacient;
-import Gestao_Pacientes.Entities.PacientStatus;
-import Gestao_Pacientes.Services.PacienteService;
+import Gestao_Pacientes.Entities.Patient;
+import Gestao_Pacientes.Entities.PatientStatus;
+import Gestao_Pacientes.Services.PatientService;
 
 @RestController
-@RequestMapping(value = "/pacients")
-public class PacientController {
+@RequestMapping(value = "/patients")
+public class PatientController {
     
     @Autowired
-    PacienteService pacienteService;
+    PatientService patientService;
 
     @PostMapping
-    public ResponseEntity<Pacient> addPacient(@RequestBody Pacient pacient){
+    public ResponseEntity<Patient> addPacient(@RequestBody Patient pacient){
 
-        Pacient result = pacienteService.addPacient(pacient);
+        Patient result = patientService.addPacient(pacient);
 
         return new ResponseEntity<>(result,HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<Page<Pacient>> getAllPacients(Pageable pageable){
+    public ResponseEntity<Page<Patient>> getAllPacients(Pageable pageable){
 
-        Page<Pacient> result = pacienteService.getAllPacients(pageable);
+        Page<Patient> result = patientService.getAllPacients(pageable);
 
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
     @GetMapping(value = "/status/{status}")
-    public ResponseEntity<Page<Pacient>> findPacientbyStatus(@PathVariable PacientStatus pacientStatus, Pageable pageable){
+    public ResponseEntity<Page<Patient>> findPacientbyStatus(@PathVariable PatientStatus status, Pageable pageable){
 
-        Page<Pacient> result = pacienteService.findPacientByStatus(pacientStatus, pageable);
+        Page<Patient> result = patientService.findPacientByStatus(status, pageable);
 
         return new ResponseEntity<>(result,HttpStatus.FOUND);
     }
 
-    @DeleteMapping
+    @DeleteMapping(value = "/{id}")
     public void deletePacientById(@PathVariable Long id){
 
-        pacienteService.deletePacientById(id);
+        patientService.deletePacientById(id);
     }
 
-    @PatchMapping(value = "/{id}")
-    public ResponseEntity<Pacient> updateStatus(@RequestBody PacientStatus pacientStatus, @PathVariable Long id){
+    @PatchMapping(value = "/{id}/status/{status}")
+    public ResponseEntity<Patient> updateStatus(@PathVariable PatientStatus status, @PathVariable Long id){
 
-        Pacient result = pacienteService.updateStatus(pacientStatus, id);
+        Patient result = patientService.updateStatus(status, id);
 
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
