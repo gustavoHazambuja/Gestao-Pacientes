@@ -26,7 +26,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Paciente {
+public class Pacient {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,6 +41,6 @@ public class Paciente {
     private LocalDate dateBirth;
 
     @Enumerated(EnumType.STRING)
-    private PacienteStatus status;
+    private PacientStatus status;
     private Date timesTamp;
 }

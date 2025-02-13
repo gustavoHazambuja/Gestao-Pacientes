@@ -1,6 +1,6 @@
 package Gestao_Pacientes.Entities;
 
-public enum PacienteStatus {
+public enum PacientStatus {
     AGUARDANDO_ATENDIMENTO,
     EM_ATENDIMENTO,
     ATENDIDO,
