@@ -12,6 +12,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -43,12 +45,17 @@ public class Patient {
     
     private LocalDateTime timeStamp = LocalDateTime.now();
 
-    public Patient(Long id, String name, String cpf, LocalDate dateBirth, PatientStatus status) {
+    @ManyToOne
+    @JoinColumn(name = "doctor_id")
+    private Doctor doctor;
+
+    public Patient(Long id, String name, String cpf, LocalDate dateBirth, PatientStatus status, Doctor doctor) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
         this.dateBirth = dateBirth;
         this.status = status;
+        this.doctor = doctor;
     }
 
    
