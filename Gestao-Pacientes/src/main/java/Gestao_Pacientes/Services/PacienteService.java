@@ -18,7 +18,7 @@ public class PacienteService {
     PacientRepository pacientRepository;
 
     @Transactional
-    public Pacient addPaciente(Pacient pacient){
+    public Pacient addPacient(Pacient pacient){
 
         return pacientRepository.save(pacient);
     }
