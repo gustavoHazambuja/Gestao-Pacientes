@@ -22,7 +22,7 @@ Gestão de Pacientes é uma aplicação backend, ela consiste em um pequeno soft
 ## Back end
 - Java
 - Spring Boot
-- JPA
+- JPA / Hibernate
 - Maven
 
 ## Implantação em produção
